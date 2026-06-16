@@ -135,8 +135,7 @@ export default function PropertyDetailsPage() {
             📍 {property.address_text || property.locality || property.city}
           </p>
         </div>
-
-        <ImageGallery images={[]} />
+        <ImageGallery propertyType={property.property_type} />
 
         <div className={styles.splitLayout}>
           <div className={styles.detailsColumn}>
