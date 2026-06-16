@@ -14,6 +14,7 @@ import (
 	"bachelorsSpace/internal/pkg/crypto"
 	"bachelorsSpace/internal/pkg/embedding"
 
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog"
@@ -43,7 +44,15 @@ func main() {
 
 	// Connect to PostgreSQL via a connection pool
 	ctx := context.Background()
-	pool, err := pgxpool.New(ctx, cfg.DatabaseURL)
+	poolConfig, err := pgxpool.ParseConfig(cfg.DatabaseURL)
+	if err != nil {
+		log.Fatal().Err(err).Msg("failed to parse database URL")
+	}
+
+	// Disable prepared statements for compatibility with Supabase's transaction pooler
+	poolConfig.ConnConfig.DefaultQueryExecMode = pgx.QueryExecModeExec
+
+	pool, err := pgxpool.NewWithConfig(ctx, poolConfig)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to create database connection pool")
 	}
