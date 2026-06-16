@@ -1,0 +1,195 @@
+.container {
+  display: flex;
+  height: calc(100vh - 80px); /* Subtract navbar height */
+  margin-top: 80px;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.contentArea {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 
+  Desktop Layout: List on left, Map on right 
+*/
+.listSection {
+  width: 55%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  z-index: 10;
+  box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+}
+
+.mapSection {
+  width: 45%;
+  height: 100%;
+  position: relative;
+}
+
+/* Custom Scrollbar for list */
+.listSection::-webkit-scrollbar {
+  width: 8px;
+}
+.listSection::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.listHeader {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.mobileHeader {
+  display: none;
+}
+
+.mapLoading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+}
+
+/* States */
+.loadingState, .emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 102, 204, 0.2);
+  border-top-color: #0066cc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.emptyState h3 {
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.resetBtn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(0, 102, 204, 0.15);
+  color: #0066cc;
+  border: 1px solid rgba(0, 102, 204, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.resetBtn:hover {
+  background: rgba(0, 102, 204, 0.25);
+}
+
+.error {
+  padding: 1rem;
+  background: rgba(255, 95, 86, 0.1);
+  color: #ff5f56;
+  border: 1px solid rgba(255, 95, 86, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile Layout */
+@media (max-width: 900px) {
+  .contentArea {
+    flex-direction: column;
+  }
+  
+  .mobileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(20, 20, 25, 0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 10;
+  }
+  
+  .filterToggleBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  
+  .resultsCount {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .mapSection {
+    width: 100%;
+    height: 40vh; /* Map takes top 40% */
+  }
+
+  .listSection {
+    width: 100%;
+    height: 60vh; /* List takes bottom 60% */
+    padding: 1rem;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  }
+  
+  .listHeader {
+    display: none; /* Hide header on mobile, save space */
+  }
+}

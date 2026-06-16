@@ -1,0 +1,356 @@
+/* ═══════════════════════════════════════════════════════════════
+   MobileNav — floating "command pill" (≤768px)
+   A frosted pill at bottom-center that springs open upward into a
+   glass nav panel. iOS 26 dynamic-island flavour; theme-aware tokens.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Layer (full-screen overlay root, portalled to <body>) ────── */
+.layer {
+  display: none; /* desktop: NavLinks handles nav */
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none; /* only the pill / panel / backdrop opt back in */
+}
+
+@media (max-width: 768px) {
+  .layer {
+    display: block;
+  }
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px) saturate(120%);
+  -webkit-backdrop-filter: blur(4px) saturate(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layerOpen .backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Dock (bottom-center column: panel on top, pill below) ────── */
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 1001;
+  width: min(92vw, 380px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none;
+}
+
+/* ── Expanding panel ──────────────────────────────────────────── */
+/* grid 0fr → 1fr gives a smooth auto-height reveal */
+.panelWrap {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.46s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layerOpen .panelWrap {
+  grid-template-rows: 1fr;
+}
+
+.panel {
+  overflow: hidden;
+  min-height: 0; /* required so the grid row can collapse to 0 */
+  border-radius: 26px;
+  background: var(--surface-3);
+  border: 0.5px solid var(--glass-border-strong);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--glass-shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.layerOpen .panel {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panelInner {
+  padding: 0.75rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.46s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.layerOpen .panelInner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ── Links ────────────────────────────────────────────────────── */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0.95rem;
+  border-radius: 14px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  opacity: 0; /* cascade-in; replays each open via .layerOpen */
+}
+
+.layerOpen .link {
+  animation: linkIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes linkIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.link:active {
+  transform: scale(0.98);
+}
+
+.linkActive {
+  background: rgba(0, 102, 204, 0.15);
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.activeMark {
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+  text-shadow: 0 0 8px var(--accent-blue-glow);
+}
+
+/* ── Divider ──────────────────────────────────────────────────── */
+.divider {
+  height: 0.5px;
+  background: var(--divider);
+  margin: 0.6rem 0.5rem;
+}
+
+/* ── Account ──────────────────────────────────────────────────── */
+.account {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0066cc, #004499);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.userName {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+  margin-top: 1px;
+}
+
+.logoutBtn {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 95, 86, 0.1);
+  border: 0.5px solid rgba(255, 95, 86, 0.25);
+  color: var(--accent-error);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 95, 86, 0.18);
+}
+
+.logoutBtn:active {
+  transform: scale(0.92);
+}
+
+/* Logged-out: full-width auth pills */
+.authButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.authButtons a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+}
+
+/* ── Appearance row ───────────────────────────────────────────── */
+.themeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.55rem 0.55rem 0.95rem;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+}
+
+.themeLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ── Command pill (persistent trigger + handle) ───────────────── */
+.pill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 100%;
+  padding: 0.6rem 0.85rem 0.6rem 1rem;
+  border-radius: 999px;
+  background: var(--surface-3);
+  border: 0.5px solid var(--glass-border-strong);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: var(--glass-shadow);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease,
+    background 0.2s ease;
+  animation: pillIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pillIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pill:hover {
+  box-shadow: var(--glass-shadow-lg);
+}
+
+.pill:active {
+  transform: scale(0.96);
+}
+
+.pillDot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px var(--accent-blue), 0 0 16px var(--accent-blue-glow);
+}
+
+.pillLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pillChevron {
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--text-secondary);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layerOpen .pillChevron {
+  transform: rotate(180deg);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .panelWrap,
+  .panel,
+  .panelInner,
+  .backdrop,
+  .pill,
+  .pillChevron,
+  .layerOpen .link {
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
+}

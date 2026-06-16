@@ -1,0 +1,94 @@
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1; /* Keep below Navbar and FilterPanel overlay */
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  background: #1a1a1f; /* Dark background before tiles load */
+}
+
+/* Custom Marker Styling */
+.markerPin {
+  background: rgba(30, 30, 35, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.markerPin::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.8);
+}
+
+.markerVerified {
+  border-color: #0066cc;
+}
+.markerVerified::after {
+  border-top-color: #0066cc;
+}
+
+.markerActive {
+  background: #0066cc;
+  border-color: #fff;
+  transform: scale(1.15) translateY(-4px);
+  z-index: 1000;
+}
+.markerActive::after {
+  border-top-color: #fff;
+}
+
+/* Leaflet Overrides */
+:global(.leaflet-container) {
+  font-family: inherit;
+}
+
+:global(.leaflet-popup-content-wrapper) {
+  background: rgba(30, 30, 35, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0;
+}
+
+:global(.leaflet-popup-tip) {
+  background: rgba(30, 30, 35, 0.95);
+}
+
+.popupContent {
+  padding: 0.75rem 1rem;
+  margin: 0;
+}
+
+.popupTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.popupPrice {
+  color: #0066cc;
+  font-weight: 700;
+}

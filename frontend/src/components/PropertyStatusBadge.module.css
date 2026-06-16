@@ -1,0 +1,41 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 0.5px solid;
+}
+
+.badgeDraft {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+}
+
+.badgePending {
+  background: rgba(255, 189, 46, 0.1);
+  border-color: rgba(255, 189, 46, 0.3);
+  color: #ffbd2e;
+}
+
+.badgeVerified {
+  background: rgba(39, 201, 63, 0.1);
+  border-color: rgba(39, 201, 63, 0.3);
+  color: #27c93f;
+}
+
+.badgeOccupied {
+  background: rgba(0, 102, 204, 0.1);
+  border-color: rgba(0, 102, 204, 0.3);
+  color: #0066cc;
+}
+
+.badgeDelisted {
+  background: rgba(255, 95, 86, 0.1);
+  border-color: rgba(255, 95, 86, 0.3);
+  color: #ff5f56;
+}

@@ -1,0 +1,142 @@
+/* NavbarLandlordMenu.module.css — sidebar mode styles */
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+/* ── Navigation Links ──────────────────────────────────── */
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+  flex: 1;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  color: var(--text-secondary, #86868b);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: background 0.15s ease, color 0.15s ease;
+  border: 0.5px solid transparent;
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #f5f5f7);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.navLink:global(.active),
+.navLink[aria-current="page"] {
+  background: rgba(0, 102, 204, 0.12);
+  color: #4da6ff;
+  border-color: rgba(0, 102, 204, 0.25);
+}
+
+.navIcon {
+  font-size: 1rem;
+  width: 1.25rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ── Sidebar Footer (user info + logout) ───────────────── */
+
+.sidebarFooter {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+  margin: 0 0.75rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0066cc, #004499);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.userName {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary, #f5f5f7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size: 0.7rem;
+  color: var(--text-secondary, #86868b);
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-secondary, #86868b);
+  cursor: pointer;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 85, 85, 0.1);
+  color: #ff5f56;
+  border-color: rgba(255, 85, 85, 0.2);
+}
+
+/* ── Access denied state ───────────────────────────────── */
+
+.accessDenied {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-secondary, #86868b);
+  font-size: 0.875rem;
+}
+
+.accessDenied p {
+  margin-bottom: 1rem;
+}

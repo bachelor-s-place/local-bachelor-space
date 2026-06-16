@@ -1,0 +1,196 @@
+.page {
+  max-width: 1100px;
+}
+
+/* ── Header ────────────────────────────── */
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #f5f5f7;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #86868b;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.stat {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #ff9f0a;
+  background: rgba(255, 159, 10, 0.08);
+  border: 0.5px solid rgba(255, 159, 10, 0.2);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+}
+
+/* ── Loading / Empty ──────────────────── */
+
+.loading {
+  color: #86868b;
+  font-size: 0.9rem;
+  padding: 2rem 0;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #86868b;
+}
+
+.emptyIcon { font-size: 2.5rem; margin-bottom: 1rem; }
+.emptyState h3 { color: #f5f5f7; margin-bottom: 0.5rem; }
+.emptyState p { font-size: 0.85rem; }
+
+/* ── Table ────────────────────────────── */
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table thead {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.row {
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.1s ease;
+}
+
+.row:last-child { border-bottom: none; }
+.row:hover { background: rgba(255, 255, 255, 0.02); }
+
+.table td {
+  padding: 0.875rem 1rem;
+  color: #f5f5f7;
+  vertical-align: middle;
+}
+
+.propertyCell { max-width: 200px; }
+.propertyTitle { font-weight: 500; }
+.dateCell { color: #86868b; white-space: nowrap; }
+
+/* ── Badges ───────────────────────────── */
+
+.typeBadge, .statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ai_photo { background: rgba(0, 122, 255, 0.1); color: #4da6ff; border: 0.5px solid rgba(0, 122, 255, 0.2); }
+.manual { background: rgba(52, 199, 89, 0.1); color: #34c759; border: 0.5px solid rgba(52, 199, 89, 0.2); }
+.virtual_tour { background: rgba(175, 82, 222, 0.1); color: #bf5af2; border: 0.5px solid rgba(175, 82, 222, 0.2); }
+.physical { background: rgba(255, 159, 10, 0.1); color: #ff9f0a; border: 0.5px solid rgba(255, 159, 10, 0.2); }
+
+.pending { background: rgba(255, 159, 10, 0.08); color: #ff9f0a; border: 0.5px solid rgba(255, 159, 10, 0.2); }
+.approved { background: rgba(52, 199, 89, 0.08); color: #34c759; border: 0.5px solid rgba(52, 199, 89, 0.2); }
+.rejected { background: rgba(255, 59, 48, 0.08); color: #ff6b6b; border: 0.5px solid rgba(255, 59, 48, 0.2); }
+
+/* ── Notes input ──────────────────────── */
+
+.notesInput {
+  width: 160px;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: #f5f5f7;
+  font-size: 0.78rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.notesInput:focus { border-color: rgba(255, 255, 255, 0.2); }
+.notesInput::placeholder { color: #48484a; }
+
+/* ── Action buttons ───────────────────── */
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.btnApprove, .btnReject, .btnAI {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 0.5px solid transparent;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btnApprove {
+  background: rgba(52, 199, 89, 0.1);
+  color: #34c759;
+  border-color: rgba(52, 199, 89, 0.25);
+}
+.btnApprove:hover:not(:disabled) { background: rgba(52, 199, 89, 0.2); }
+
+.btnReject {
+  background: rgba(255, 59, 48, 0.08);
+  color: #ff6b6b;
+  border-color: rgba(255, 59, 48, 0.2);
+}
+.btnReject:hover:not(:disabled) { background: rgba(255, 59, 48, 0.15); }
+
+.btnAI {
+  background: rgba(0, 122, 255, 0.08);
+  color: #4da6ff;
+  border-color: rgba(0, 122, 255, 0.2);
+}
+.btnAI:hover:not(:disabled) { background: rgba(0, 122, 255, 0.15); }
+
+.btnApprove:disabled, .btnReject:disabled, .btnAI:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.resolved {
+  font-size: 0.75rem;
+  color: #48484a;
+  font-style: italic;
+}

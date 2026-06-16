@@ -1,0 +1,15 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: bachelors_space_db
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=bachelors_space
+    volumes:
+      - ./db/schema_initializer.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always

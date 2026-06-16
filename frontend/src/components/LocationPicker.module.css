@@ -1,0 +1,225 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* ── Search box ─────────────────────────────── */
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: rgba(20, 20, 25, 0.8);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px 10px 0 0;
+  padding: 0.75rem 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.searchIcon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f5f5f7;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.searchInput::placeholder {
+  color: #48484a;
+}
+
+.spinner {
+  font-size: 0.9rem;
+  color: #86868b;
+  animation: spin 1s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Autocomplete results ────────────────────── */
+
+.resultsList {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 24, 0.98);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  z-index: 1001;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.resultItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.1s ease;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItem:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.resultIcon {
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.resultText {
+  font-size: 0.78rem;
+  color: #f5f5f7;
+  line-height: 1.4;
+}
+
+/* ── Collapsed Button ─────────────────────────── */
+
+.openModalBtn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(20, 20, 25, 0.6);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #f5f5f7;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.openModalBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pinIcon {
+  font-size: 1.1rem;
+}
+
+/* ── Modal Overlay ──────────────────────────── */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: #1a1a1f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modalHeader h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: #86868b;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: #fff;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.confirmBtn {
+  background: var(--accent-blue, #0066cc);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.confirmBtn:hover {
+  opacity: 0.9;
+}
+
+/* ── Map container ──────────────────────────── */
+
+.mapContainer {
+  height: 400px;
+  position: relative;
+}
+/* ── Coordinates ────────────────────────────── */
+
+.coords {
+  font-size: 0.72rem;
+  color: #48484a;
+  margin-top: 0.5rem;
+  padding-left: 0.25rem;
+}

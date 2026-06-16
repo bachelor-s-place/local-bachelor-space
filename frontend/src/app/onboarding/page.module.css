@@ -1,0 +1,288 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-top: 100px;
+}
+
+.glassCard {
+  width: 100%;
+  max-width: 600px;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 3rem;
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  box-shadow: var(--glass-highlight-strong), var(--glass-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Step Indicator ─────────────────────────────────────────── */
+.stepIndicator {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--glass-border-strong);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: var(--accent-blue);
+  transform: scale(1.2);
+}
+
+/* ─── Header ──────────────────────────────────────────────────── */
+.header {
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ─── Option Cards (Step 1) ──────────────────────────────────── */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.optionCard {
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--glass-highlight);
+}
+
+.optionCard:hover {
+  background: var(--glass-bg-hover);
+  transform: translateY(-2px);
+  border-color: var(--glass-border-strong);
+}
+
+.optionCard.selected {
+  background: rgba(0, 102, 204, 0.12);
+  border-color: var(--accent-blue);
+  box-shadow: var(--glass-highlight), 0 0 0 1px rgba(0,102,204,0.2);
+}
+
+.optionIcon {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.optionLabel {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.optionDesc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ─── Input Group (Steps 2 & 3) ─────────────────────────────── */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.input,
+.select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 0.5px solid var(--input-border);
+  border-radius: 12px;
+  padding: 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--accent-blue);
+  background: var(--input-bg-focus);
+  box-shadow: 0 0 0 3px var(--accent-blue-glow);
+}
+
+.select {
+  background-color: var(--select-bg);
+  color: var(--select-color);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2386868b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* ─── Lifestyle Tag Chips (Step 3) ───────────────────────────── */
+.tagHint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: -0.25rem;
+}
+
+.tagsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.chip {
+  padding: 0.45rem 0.9rem;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-inter), sans-serif;
+}
+
+.chip:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-strong);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.chip.chipActive {
+  background: rgba(0, 102, 204, 0.15);
+  border-color: var(--accent-blue);
+  color: var(--text-primary);
+}
+
+/* ─── Error ──────────────────────────────────────────────────── */
+.errorMsg {
+  font-size: 0.85rem;
+  color: var(--accent-error);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* ─── Actions Bar ────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btnSkip {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+  font-family: var(--font-inter), sans-serif;
+  flex-shrink: 0;
+}
+
+.btnSkip:hover {
+  color: var(--text-primary);
+}
+
+.btnNext {
+  flex: 1;
+  padding: 1rem;
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.btnNext:hover:not(:disabled) {
+  background: var(--accent-blue-hover);
+  transform: translateY(-1px);
+}
+
+.btnNext:disabled {
+  cursor: not-allowed;
+}
+
+/* ─── Animation ──────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.25rem;
+    padding-top: 90px;
+    align-items: flex-start;
+  }
+
+  .glassCard {
+    padding: 2rem 1.25rem;
+    border-radius: 20px;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}

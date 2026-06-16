@@ -1,0 +1,311 @@
+.container {
+  padding: 2rem;
+  padding-top: 100px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Profile Banner ──────────────────────────────────────────── */
+.profileBanner {
+  background: linear-gradient(90deg, rgba(247, 37, 133, 0.08), rgba(114, 9, 183, 0.08));
+  border: 0.5px solid rgba(247, 37, 133, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--glass-highlight);
+}
+
+.bannerTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.bannerDesc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ── Main Content ────────────────────────────────────────────── */
+.mainContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.newSearchBtn {
+  padding: 0.6rem 1.25rem;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border-strong);
+  color: var(--text-primary);
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.2s;
+  box-shadow: var(--glass-highlight);
+}
+
+.newSearchBtn:hover {
+  background: var(--glass-bg-hover);
+}
+
+.matchesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Invites Section ─────────────────────────────────────────── */
+.invitesSection {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--glass-highlight), var(--glass-shadow-sm);
+}
+
+.invitesSectionTitle {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.inviteItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.inviteName {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.inviteBy {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* ── Pagination ──────────────────────────────────────────────── */
+.paginationContainer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.loadMoreBtn {
+  padding: 0.75rem 2rem;
+  background: rgba(0, 102, 204, 0.08);
+  color: #3399ff;
+  border: 0.5px solid rgba(0, 102, 204, 0.25);
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.2s;
+}
+
+.loadMoreBtn:hover:not(:disabled) {
+  background: rgba(0, 102, 204, 0.15);
+}
+
+.loadMoreBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Skeletons ───────────────────────────────────────────────── */
+.skeletonCard {
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+.skeletonHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skeletonAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--glass-bg-hover);
+}
+
+.skeletonTextContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeletonText {
+  height: 12px;
+  border-radius: 6px;
+  background: var(--glass-bg-hover);
+}
+
+@keyframes shimmer {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* ── Empty / Error States ────────────────────────────────────── */
+.errorState {
+  background: rgba(255, 95, 86, 0.08);
+  border: 0.5px solid rgba(255, 95, 86, 0.25);
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: var(--accent-error);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.retryBtn {
+  background: transparent;
+  border: 0.5px solid var(--accent-error);
+  color: var(--accent-error);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.retryBtn:hover {
+  background: rgba(255, 95, 86, 0.08);
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--glass-highlight);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.emptyState h2 {
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.emptyState p {
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.primaryActionBtn {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.primaryActionBtn:hover {
+  background: var(--accent-blue-hover);
+  transform: translateY(-1px);
+}
+
+/* ── Invite Buttons ──────────────────────────────────────────── */
+.primaryBtn {
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  background: var(--accent-blue-hover);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.secondaryBtn {
+  background: transparent;
+  border: 0.5px solid var(--glass-border-strong);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.secondaryBtn:hover:not(:disabled) {
+  background: var(--glass-bg);
+}
+
+.secondaryBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
